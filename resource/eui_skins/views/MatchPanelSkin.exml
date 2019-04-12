@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="MatchPanelSkin" width="640" height="1136" currentState="auto" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" states="auto,ing" >
+	<e:Image source="bg1_jpg" left="0" right="0" top="0" bottom="0"/>
+	<e:Group id="content" width="640" height="1136" horizontalCenter="0" verticalCenter="0">
+		<e:Button id="matchBtn" label="开始匹配" y="874" horizontalCenter="0" width="200"/>
+		<e:Label id="nick" text="昵称" y="244" horizontalCenter="0" fontFamily="Microsoft YaHei" textColor="0x00f9ff" background="true" backgroundColor="0xff0000" size="40"/>
+	</e:Group>
+	<e:Rect left="0" right="0" top="0" bottom="0" fillAlpha="0.5" includeIn="ing"/>
+	<e:Label text="Matching..." horizontalCenter="0" verticalCenter="-120" size="45" includeIn="ing"/>
+</e:Skin>

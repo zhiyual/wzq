@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="ConfirmSkin" width="640" height="1136" currentState="confirm" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" states="confirm,alert" >
+	<e:Rect fillAlpha="0.5" left="0" right="0" top="0" bottom="0"/>
+	<e:Group id="content" width="460" height="320" horizontalCenter="0" verticalCenter="-50">
+		<e:Rect left="0" right="0" top="0" bottom="0" fillColor="0xffffff" ellipseWidth="40" ellipseHeight="40" strokeColor="0xea9b00" strokeWeight="4"/>
+		<e:Label id="msgLabel" text="Label" horizontalCenter="0" maxWidth="400" fontFamily="Microsoft YaHei" textColor="0x000000" bold="true" verticalCenter="-50"/>
+		<e:Button id="yesBtn" label="YES" bottom="30" horizontalCenter.alert="0" horizontalCenter="-130" label.alert="OK"/>
+		<e:Button id="noBtn" label="NO" bottom="30" includeIn="confirm" horizontalCenter="130"/>
+	</e:Group>
+</e:Skin>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="LoginPanelSkin" width="640" height="1136" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Image source="bg1_jpg" left="0" right="0" top="0" bottom="0"/>
+	<e:Group id="content" width="640" height="1136" horizontalCenter="0" verticalCenter="0">
+		<e:Group width="600" height="300" horizontalCenter="0" verticalCenter="0">
+		<e:Rect fillColor="0xFFFFFF" fillAlpha="0.5" scaleX="1" scaleY="1" left="0" right="0" top="0" bottom="0"/>
+			<e:EditableText id="nameIn" width="400" text="Label" fontFamily="Microsoft YaHei" textColor="0x000000" bold="true" height="40" verticalAlign="middle" textAlign="center" horizontalCenter="0" y="55" background="true" backgroundColor="0x02e8b1" borderColor="0xc48200" border="true"/>
+			<e:Button id="loginBtn" label="登录" y="197" horizontalCenter="0"/>
+		</e:Group>
+	</e:Group>
+</e:Skin>
