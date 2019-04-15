@@ -27,8 +27,8 @@ class LayerManager {
     }
 
     private AdapterWindow() {
-        let sw = window.screen.availWidth;
-		let sh = window.screen.availHeight;
+        let sw = Utils.Screen.width;
+		let sh = Utils.Screen.height;
 
         if (sh < sw) {
             let idx = sw;

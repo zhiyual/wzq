@@ -6,6 +6,8 @@
 		<e:Rect fillColor="0xFFFFFF" fillAlpha="0.5" scaleX="1" scaleY="1" left="0" right="0" top="0" bottom="0"/>
 			<e:EditableText id="nameIn" width="400" text="Label" fontFamily="Microsoft YaHei" textColor="0x000000" bold="true" height="40" verticalAlign="middle" textAlign="center" horizontalCenter="0" y="55" background="true" backgroundColor="0x02e8b1" borderColor="0xc48200" border="true"/>
 			<e:Button id="loginBtn" label="登录" y="197" horizontalCenter="0"/>
+			<e:Image id="icon" source="001_png" horizontalCenter="0" verticalCenter="-260" x="240" y="-171" scaleX="1" scaleY="1"/>
 		</e:Group>
+		<e:Label id="l1" text="" y="818" horizontalCenter="0" maxWidth="600" fontFamily="Microsoft YaHei" textColor="0x000000" bold="true" size="24" textAlign="center"/>
 	</e:Group>
 </e:Skin>

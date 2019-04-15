@@ -17,10 +17,11 @@ class PlayManager {
     private meChess: number = 1; 
 
     roomid: string;
-    public InitGame(res: {roomid: string, chess: number}) {
+    public InitGame(res: {roomid: string, chess: number, rival: {name: string, icon: string}}) {
         this._manual = [];
         this.meChess = res.chess;
         this.roomid = res.roomid;
+        this._rival = res.rival;
     }
 
     /**
@@ -37,5 +38,14 @@ class PlayManager {
         } else {
             return this.Manual[l - 1][0] != this.Me;
         }
+    }
+
+
+
+    // =============================
+    private _rival: {name: string, icon: string} = null;
+
+    public get rival(): {name: string, icon: string} {
+        return this._rival;
     }
 }

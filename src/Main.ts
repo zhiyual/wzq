@@ -63,15 +63,15 @@ class Main extends eui.UILayer {
             window.platform = new Platfrom_WX();
         }
 
-        // 初始化显示层级
-        App.gameStage = this.stage;
-        App.layer.InitLayer(App.gameStage);
-
         await this.loadResource()
         
         const result = await RES.getResAsync("description_json")
         
-        SocketHelper.instance.Connect('http://172.21.50.30:3002');
+        SocketHelper.instance.Connect();
+
+        // 初始化显示层级
+        App.gameStage = this.stage;
+        App.layer.InitLayer(App.gameStage);
         this.createGameScene();
         // await platform.login().then(()=>{
         //     this.createGameScene();

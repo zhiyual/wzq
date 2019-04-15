@@ -22,4 +22,10 @@ class PanelManager {
         if (!this._confirm) this._confirm = new ConfirmPanel();
         return this._confirm;
     }
+
+    private _result: ResultPanel;
+    public get result(): ResultPanel {
+        if (!this._result) this._result = new ResultPanel();
+        return this._result;
+    }
 }

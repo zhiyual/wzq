@@ -104,6 +104,7 @@ ss.on('connection', function (socket) {
 			socket.emit(cmd_res.login, JSON.stringify(rsl));
 		} else {
 			allConn[id].name = msg.name;
+			allConn[id].icon = msg.icon;
 			names.push(msg.name);
 			
 			console.log(msg.name + ' Login!');
@@ -125,11 +126,26 @@ ss.on('connection', function (socket) {
 			allConn[id].Join(id);
 			allConn[rival_id].Join(id);
 			
+			let p1 = allConn[id];
+			let p2 = allConn[rival_id];
+			
 			let rsl = {
 				roomid: id,
-				chess_b: id
+				chess_b: id,
+				rival: {},
 			}
-			ss.sockets.in(id).emit(cmd_res.match, JSON.stringify(rsl));
+			
+			rsl.rival = {
+				name: p2.name,
+				icon: p2.icon
+			}
+			p1.ws.emit(cmd_res.match, JSON.stringify(rsl));
+			
+			rsl.rival = {
+				name: p1.name,
+				icon: p1.icon
+			}
+			p2.ws.emit(cmd_res.match, JSON.stringify(rsl));
 		} else {
 			awaits.push(id);
 		}
@@ -162,6 +178,7 @@ ss.on('connection', function (socket) {
 		m.push(msg.step);
 		
 		ss.sockets.in(msg.roomid).emit(cmd_res.draw, JSON.stringify(msg.step));
+		
 		if(ck.checkManual(m)) {
 			let d = {
 				winer: id,

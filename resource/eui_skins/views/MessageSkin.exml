@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="MessageSkin" width="640" height="300" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group left="0" right="0" bottom="0" height="90">
+		<e:Group id="quickBox" height="200" width="500" horizontalCenter="0" x="120" scaleX="1" scaleY="1" top="-200">
+			<e:Scroller left="0" right="0" top="0" bottom="0">
+			<e:List id="qk_list" itemRendererSkinName="MsgItemSkin">
+				<e:ArrayCollection>
+					<e:Array>
+						<e:Object msg="1234"/>
+						<e:Object msg="2222"/>
+						<e:Object msg="3333"/>
+						<e:Object msg="4444"/>
+						<e:Object msg="5555"/>
+					</e:Array>
+				</e:ArrayCollection>
+				<e:layout>
+				<e:VerticalLayout gap="0"/>
+				</e:layout>
+			</e:List>
+			</e:Scroller>
+		</e:Group>
+		<e:Rect left="0" right="0" top="0" bottom="0" fillColor="0xff9300"/>
+		<e:Rect width="440" height="50" fillColor="0x00a7ff" verticalCenter="0" right="180" ellipseWidth="20" strokeColor="0xe1ff00" strokeWeight="2"/>
+		<e:Image id="moreBtn" source="more_png" verticalCenter="0" right="100"/>
+		<e:Button id="sendBtn" label="发送" width="60" verticalCenter="0" right="20"/>
+		<e:EditableText id="msgLabel" width="420" height="50" text="Label" verticalCenter="0" verticalAlign="middle" textAlign="center" right="190" fontFamily="Microsoft YaHei" textColor="0x000000"/>
+	</e:Group>
+</e:Skin>

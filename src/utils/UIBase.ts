@@ -31,9 +31,9 @@ class UIBase extends eui.Component{
         this.isOpened = true;
         this.tap_mask && this.tap_mask.addEventListener(egret.TouchEvent.TOUCH_TAP, this.OnTapMask, this);
         // this.AdaptIphoneX();
-        this.AdaptFullScreen();
-        this.OpenMovies();
-        this.FlashStripeBg();
+        // this.AdaptFullScreen();
+        // this.OpenMovies();
+        // this.FlashStripeBg();
     }
 
     protected OnClose() {
@@ -101,8 +101,8 @@ class UIBase extends eui.Component{
      */
     protected AdaptScreen() {
         if (!this.content) return;
-		let sw = window.screen.availWidth;
-		let sh = window.screen.availHeight;
+		let sw = Utils.Screen.width;
+		let sh = Utils.Screen.height;
 
         if (sh < sw) {
             let idx = sw;
@@ -123,6 +123,7 @@ class UIBase extends eui.Component{
 			let cw = sw / sh * gameH;
 			this.content.scaleX = this.content.scaleY = cw/gameW;
             if (this.AdaptType == 1) this.content.height = gameW * (sh / sw);
+            
 		}
 
 		if (scale_s > scale_c) {

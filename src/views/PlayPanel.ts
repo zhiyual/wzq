@@ -2,6 +2,7 @@ class PlayPanel extends UIBase {
     public constructor() {
         super();
         this.skinName = PlayPanelSkin;
+        this.AdaptType = UIBase.Adapt1;
     }
 
 
@@ -10,18 +11,41 @@ class PlayPanel extends UIBase {
     private chessBox: eui.Group;
     private _chessPg: egret.Shape;
 
+    private icon_p1: eui.Image;
+    private name_p1: eui.Label;
+    private chess_p1: eui.Label;
+    private icon_p2: eui.Image;
+    private name_p2: eui.Label;
+    private chess_p2: eui.Label;
+
+    private drawTip: eui.Label;
+    private hasChess: eui.Label;
+
     protected OnOpen() {
         super.OnOpen();
 
         // App.play.InitGame(1);
 
         this.InitMapBg();
+        this.hasChess.text = App.play.Me == 1?"你执黑子":"你执白子";
+        this.drawTip.text = "黑棋先手";
+        this.InitPlayers();
+
 
         this.tapMask.addEventListener(egret.TouchEvent.TOUCH_TAP, this.OnMaskTap, this);
         App.event.addListener(EventName.UpdateManual, this.UpdateChess, this);
         App.event.addListener(EventName.GameOver, this.OnGameOver, this);
     }
 
+    private InitPlayers() {
+        this.icon_p1.source = App.user.user_avater;
+        this.name_p1.text = App.user.user_name;
+        this.chess_p1.text = App.play.Me == 1?"黑子":"白子";
+
+        this.icon_p2.source = App.play.rival.icon;
+        this.name_p2.text = App.play.rival.name;
+        this.chess_p2.text = App.play.Me != 1?"黑子":"白子";
+    }
 
     protected OnClose() {
         super.OnClose();
@@ -29,7 +53,6 @@ class PlayPanel extends UIBase {
         App.event.delListener(EventName.UpdateManual, this.UpdateChess, this);
         App.event.delListener(EventName.GameOver, this.OnGameOver, this);
     }
-
 
     private InitMapBg() {
         let _bg = new egret.Shape();
@@ -63,7 +86,9 @@ class PlayPanel extends UIBase {
         this._chessPg.graphics.clear();
         App.play.Manual.forEach((v)=>{
             this.DrawChess(v[0], v[1], v[2]);
-        })
+        });
+
+        this.drawTip.text = App.play.isMeDraw?"到你落子...":"对方落子..."
     }
 
     private DrawChess(a, i, j) {

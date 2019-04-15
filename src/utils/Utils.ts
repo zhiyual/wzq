@@ -122,6 +122,13 @@ class Utils {
         let d2 = new Date(t2);
         return d1.getFullYear() == d2.getFullYear() && d1.getMonth() == d2.getMonth() && d1.getDate() == d2.getDate();
     }
+
+    /**获取浏览器窗口尺寸 */
+    public static get Screen(): {width: number, height: number} {
+        let sw = window.innerWidth || window.screen.availWidth;
+		let sh = window.innerHeight || window.screen.availHeight;
+        return {width: sw, height: sh};
+    }
 }
 
 class LocalStorage_Key {

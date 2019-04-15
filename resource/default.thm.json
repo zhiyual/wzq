@@ -31,7 +31,10 @@
 		"resource/eui_skins/views/LoginPanelSkin.exml",
 		"resource/eui_skins/views/MapPanelSkin.exml",
 		"resource/eui_skins/views/MatchPanelSkin.exml",
+		"resource/eui_skins/views/MessageSkin.exml",
+		"resource/eui_skins/views/MsgItemSkin.exml",
 		"resource/eui_skins/views/PlayPanelSkin.exml",
+		"resource/eui_skins/views/ResultPanelSkin.exml",
 		"resource/eui_skins/VScrollBarSkin.exml",
 		"resource/eui_skins/VSliderSkin.exml"
 	],

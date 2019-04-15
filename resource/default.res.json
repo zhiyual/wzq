@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "bg_jpg,egret_icon_png,description_json,sheet_auto_json,bg1_jpg",
+			"keys": "bg_jpg,egret_icon_png,description_json,sheet_auto_json,bg1_jpg,sheet_icon_json,more_png",
 			"name": "preload"
 		}
 	],
@@ -17,20 +17,31 @@
 			"name": "egret_icon_png"
 		},
 		{
-			"name": "description_json",
+			"url": "config/description.json",
 			"type": "json",
-			"url": "config/description.json"
+			"name": "description_json"
 		},
 		{
-			"name": "sheet_auto_json",
-			"type": "sheet",
 			"url": "assets/sheet_auto.json",
-			"subkeys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,thumb_pb_png,track_pb_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,track_sb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png"
+			"type": "sheet",
+			"name": "sheet_auto_json",
+			"subkeys": "border_png,button_down_png,button_up_png,checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,handle_png,header_png,off_png,on_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,selected_png,thumb_pb_png,thumb_png,track_pb_png,track_png,track_sb_png,tracklight_png"
 		},
 		{
-			"name": "bg1_jpg",
+			"url": "assets/views/big/bg1.jpg",
 			"type": "image",
-			"url": "assets/views/big/bg1.jpg"
+			"name": "bg1_jpg"
+		},
+		{
+			"url": "assets/views/icon/sheet_icon.json",
+			"type": "sheet",
+			"name": "sheet_icon_json",
+			"subkeys": "001_png,002_png,003_png,004_png,005_png,006_png,007_png,008_png"
+		},
+		{
+			"name": "more_png",
+			"type": "image",
+			"url": "assets/views/merge/image/more.png"
 		}
 	]
 }

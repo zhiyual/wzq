@@ -3,6 +3,8 @@ function player(id, name, ws) {
 	this.name = name;
 	this.ws = ws;
 	
+	this.icon = "";
+	
 	this.room = "";
 	this.chess = 0;
 }

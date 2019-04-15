@@ -37,4 +37,17 @@ class ConfigManager {
             img: "resource/assets/views/share/" + this._shareInfo.imgs[k],
         }
     }
+
+
+    // =============================================
+
+    private _icons: string[] = [
+        "001_png", "002_png", "003_png", "004_png", "005_png", "006_png", "007_png", "008_png"
+    ]
+
+    public get RandomIcon(): string {
+        let l = this._icons.length;
+        let k = Math.floor(Math.random() * l);
+        return this._icons[k];
+    }
 }

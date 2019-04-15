@@ -1,4 +1,9 @@
 class SocketHelper {
+
+    private static readonly ServerIP: string = "http://172.21.50.30:3002"
+    // private static readonly ServerIP: string = "http://45.76.10.80:3002"
+
+
     private static _ins: SocketHelper;
     public static get instance(): SocketHelper {
         if (!this._ins) this._ins = new SocketHelper();
@@ -23,7 +28,8 @@ class SocketHelper {
 
 
     private _socket: SocketIOClient.Socket;
-    public Connect(surl: string) {
+    public Connect() {
+        let surl = SocketHelper.ServerIP;
         this._socket = io(surl);
     }
 
@@ -48,17 +54,23 @@ class SocketHelper {
             let p: {winer?: string, loser?: string} = JSON.parse(res);
 
             let tip: string = "";
+            let isWin: boolean = false;
             if (p.winer) {
                 tip = p.winer == App.user.user_id?"YOU WIN!":"YOU LOSE!";
+                isWin = p.winer == App.user.user_id;
             }
 
             if (p.loser) {
                 tip = p.loser != App.user.user_id?"YOU WIN!":"YOU LOSE!";
+                isWin = p.loser != App.user.user_id;
             }
 
-            ConfirmPanel.Show(tip, 'alert');
+            ResultPanel.Show(isWin)
+            .then(()=>{
+                App.event.disListener(EventName.GameOver);
+            })
             
-            App.event.disListener(EventName.GameOver);
+            
             SocketHelper.instance.emit(SocketHelper.cmd_c_s.over, "");
         }, this);
     }

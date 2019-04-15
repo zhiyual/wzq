@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="ResultPanelSkin" width="640" height="1136" currentState="vic" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" states="vic,def" >
+	<e:Rect left="0" right="0" top="0" bottom="0" fillAlpha="0.5"/>
+	<e:Group id="content" width="640" height="1136" horizontalCenter="0" verticalCenter="0">
+		<e:Label id="tipLB" text="Label" horizontalCenter="0" verticalCenter="0" fontFamily="Microsoft YaHei" bold="true" size="90" textColor.vic="0xffe500" text.vic="VICTORY" textColor.def="0xc90000" text.def="DEFEAT" x="200" y="523" scaleX="1" scaleY="1"/>
+		<e:Button id="yesBtn" label="确  定" scaleX="1" scaleY="1" horizontalCenter="0" verticalCenter="360" width="200"/>
+	</e:Group>
+</e:Skin>
