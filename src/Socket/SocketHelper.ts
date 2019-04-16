@@ -1,7 +1,7 @@
 class SocketHelper {
 
-    private static readonly ServerIP: string = "http://172.21.50.30:3002"
-    // private static readonly ServerIP: string = "http://45.76.10.80:3002"
+    private static readonly ServerIP_deb: string = "http://localhost:3002"
+    private static readonly ServerIP_pub: string = "http://45.76.10.80:3002"
 
 
     private static _ins: SocketHelper;
@@ -15,7 +15,9 @@ class SocketHelper {
         login: "login",
         match: "match",
         draw: "draw",
-        over: 'over'
+        over: 'over',
+        msg: "msg",
+        burn: "burn",
     }
 
     public static readonly cmd_s_c = {
@@ -24,12 +26,14 @@ class SocketHelper {
         draw: "draw",
         over: "over",
         conn: "conn",
+        msg: 'msg',
+        burn: "burn",
     }
 
 
     private _socket: SocketIOClient.Socket;
     public Connect() {
-        let surl = SocketHelper.ServerIP;
+        let surl = window['env']=="debug"?SocketHelper.ServerIP_deb:SocketHelper.ServerIP_pub;
         this._socket = io(surl);
     }
 
@@ -69,9 +73,13 @@ class SocketHelper {
             .then(()=>{
                 App.event.disListener(EventName.GameOver);
             })
-            
-            
+                        
             SocketHelper.instance.emit(SocketHelper.cmd_c_s.over, "");
+        }, this);
+
+        SocketHelper.instance.on(SocketHelper.cmd_s_c.msg, res=>{
+            let p: {id: string, msg: string} = JSON.parse(res);
+            App.event.disListener(EventName.NewMessage, p);
         }, this);
     }
     

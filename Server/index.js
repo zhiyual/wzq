@@ -14,6 +14,7 @@ var cmd_req = {
 	match: "match",
 	draw: "draw",
 	over: "over",
+	msg: "msg",
 }
 
 /**响应命令 */
@@ -23,6 +24,7 @@ var cmd_res = {
 	draw: "draw",
 	over: "over",
 	conn: "conn",
+	msg: "msg",
 }
 
 var allConn = {};
@@ -190,6 +192,18 @@ ss.on('connection', function (socket) {
 	socket.on(cmd_req.over, ()=>{
 		let id = socket.id;
 		allConn[id] && allConn[id].Leave();
+	});
+	
+	socket.on(cmd_req.msg, res=>{
+		res = JSON.parse(res);
+		let id = socket.id;
+		if (allConn[id] && allConn[id].room) {
+			let rsl = {
+				id: id,
+				msg: res.msg
+			}
+			ss.sockets.in(allConn[id].room).emit(cmd_res.msg, JSON.stringify(rsl));
+		}
 	})
 	
 })

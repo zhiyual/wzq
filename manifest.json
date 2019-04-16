@@ -10,7 +10,7 @@
 	],
 	"game": [
 		"bin-debug/utils/UIBase.js",
-		"bin-debug/platfroms/Platform.js",
+		"bin-debug/platfroms/Platfrom_WX.js",
 		"bin-debug/Main.js",
 		"bin-debug/ThemeAdapter.js",
 		"bin-debug/manager/AudioManager.js",
@@ -21,8 +21,8 @@
 		"bin-debug/manager/PlayManager.js",
 		"bin-debug/manager/UserManager.js",
 		"bin-debug/manager/WSManager.js",
+		"bin-debug/platfroms/Platform.js",
 		"bin-debug/LoadingUI.js",
-		"bin-debug/platfroms/Platfrom_WX.js",
 		"bin-debug/Socket/SocketHelper.js",
 		"bin-debug/utils/App.js",
 		"bin-debug/AssetAdapter.js",
@@ -30,7 +30,9 @@
 		"bin-debug/views/Confirm.js",
 		"bin-debug/views/LoginPanel.js",
 		"bin-debug/views/MatchPanel.js",
+		"bin-debug/views/Message.js",
 		"bin-debug/views/PlayPanel.js",
+		"bin-debug/views/ResultPanel.js",
 		"bin-debug/WeChat/ShareHelper.js",
 		"bin-debug/WeChat/WXHelper.js",
 		"bin-debug/WeChat/WXVideoAd.js"

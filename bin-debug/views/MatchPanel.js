@@ -54,6 +54,7 @@ var MatchPanel = (function (_super) {
         _super.prototype.OnOpen.call(this);
         this.currentState = MatchPanel.StateAuto;
         this.nick.text = App.user.user_name;
+        this.icon.source = App.user.user_avater;
         this.matchBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.OnMatchTap, this);
     };
     MatchPanel.prototype.OnClose = function () {
@@ -62,16 +63,21 @@ var MatchPanel = (function (_super) {
     MatchPanel.prototype.OnMatchTap = function () {
         var _this = this;
         this.currentState = MatchPanel.StateIng;
+        this.mtip.text = 'MATCHING...';
         this.MatchUser()
             .then(function (res) {
             console.log("----", res);
-            _this.currentState = MatchPanel.StateAuto;
-            _this.Close();
             App.play.InitGame({
                 roomid: res.roomid,
                 chess: res.chess_b == App.user.user_id ? 1 : 2,
+                rival: res.rival,
             });
-            App.panel.play.Open();
+            _this.mtip.text = App.user.user_name + "\n\nVS\n\n" + res.rival.name;
+            setTimeout(function () {
+                _this.currentState = MatchPanel.StateAuto;
+                _this.Close();
+                App.panel.play.Open();
+            }, 3000);
         });
     };
     MatchPanel.prototype.MatchUser = function () {

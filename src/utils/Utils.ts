@@ -129,6 +129,18 @@ class Utils {
 		let sh = window.innerHeight || window.screen.availHeight;
         return {width: sw, height: sh};
     }
+
+    /**随机生成一个汉字 */
+    public static RandomHz(l: number = 1): string {
+        let rsl = "";
+        for (let i=0;i<l;i++) {
+            let word: string = "";
+            eval( "word=" +  '"\\u' + (Math.round(Math.random() * 20901) + 19968).toString(16)+'"');
+            rsl += word;
+        }
+
+        return rsl;
+    }
 }
 
 class LocalStorage_Key {

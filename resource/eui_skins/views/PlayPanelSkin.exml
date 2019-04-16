@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin class="PlayPanelSkin" width="640" height="1136" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+<e:Skin class="PlayPanelSkin" width="640" height="1136" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:ns1="*">
 	<e:Image source="bg1_jpg" left="0" right="0" top="0" bottom="0"/>
 	<e:Group id="content" width="640" height="1136" horizontalCenter="0" verticalCenter="0">
 		<e:Group width="600" height="600" horizontalCenter="0" verticalCenter="0">
@@ -18,6 +18,15 @@
 			<e:Label id="name_p2" text="Label" fontFamily="Microsoft YaHei" bold="true" top="36" right="130" textColor="0xff0000"/>
 			<e:Label id="chess_p1" text="Label" size="24" fontFamily="Microsoft YaHei" textColor="0x0009ff" bold="true" left="130" top="80"/>
 			<e:Label id="chess_p2" text="Label" size="24" fontFamily="Microsoft YaHei" textColor="0x0009FF" bold="true" top="80" right="130" width="65"/>
+			<e:Group id="msg_p1" left="30" top="70" minWidth="200">
+				<e:Image scaleX="1" scaleY="1" left="0" right="0" top="0" bottom="0" source="msg_bg_png" anchorOffsetY="0" anchorOffsetX="0" scale9Grid="51,58,2,7"/>
+				<e:Label id="msg1" text="Label" fontFamily="Microsoft YaHei" size="26" textColor="0x000000" top="60" bottom="10" left="10" right="10" maxWidth="400" lineSpacing="5"/>
+			</e:Group>
+			<e:Group id="msg_p2" top="70" minWidth="200" right="30">
+				<e:Image scaleX="1" scaleY="1" left="0" right="0" top="0" bottom="0" source="msg_bg_png" anchorOffsetY="0" anchorOffsetX="0" scale9Grid="7,58,3,7"/>
+				<e:Label id="msg2" text="Label" fontFamily="Microsoft YaHei" size="26" textColor="0x000000" top="60" bottom="10" left="10" right="10" maxWidth="400" lineSpacing="5"/>
+			</e:Group>
 		</e:Group>
+		<ns1:Message skinName="MessageSkin" bottom="0" horizontalCenter="0"/>
 	</e:Group>
 </e:Skin>

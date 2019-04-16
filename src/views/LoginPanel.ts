@@ -15,8 +15,9 @@ class LoginPanel extends UIBase {
         super.OnOpen();
         this._avater = App.config.RandomIcon;
         this.icon.source = this._avater;
-        this.nameIn.text = `${Utils.Screen.width} * ${Utils.Screen.height}`
-        this.l1.text = `${App.layer.Excs[0]}\n${App.layer.GlobalScale}`
+        // this.nameIn.text = `咸鱼号：${Math.floor(Math.random()*1000)}`;
+        this.nameIn.text = Utils.RandomHz(Math.floor(Math.random()*4)+2);
+        // this.l1.text = `${App.layer.Excs[0]}\n${App.layer.GlobalScale}`
         this.loginBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.OnLoginTap, this);
         SocketHelper.instance.on(SocketHelper.cmd_s_c.login, res=>{
             let p: {errCode?: number, id?: string, name?: string} = JSON.parse(res);

@@ -14,9 +14,13 @@ class PlayPanel extends UIBase {
     private icon_p1: eui.Image;
     private name_p1: eui.Label;
     private chess_p1: eui.Label;
+    private msg_p1: eui.Group;
+    private msg1: eui.Label;
     private icon_p2: eui.Image;
     private name_p2: eui.Label;
     private chess_p2: eui.Label;
+    private msg_p2: eui.Group;
+    private msg2: eui.Label;
 
     private drawTip: eui.Label;
     private hasChess: eui.Label;
@@ -35,16 +39,19 @@ class PlayPanel extends UIBase {
         this.tapMask.addEventListener(egret.TouchEvent.TOUCH_TAP, this.OnMaskTap, this);
         App.event.addListener(EventName.UpdateManual, this.UpdateChess, this);
         App.event.addListener(EventName.GameOver, this.OnGameOver, this);
+        App.event.addListener(EventName.NewMessage, this.OnNewMsg, this);
     }
 
     private InitPlayers() {
-        this.icon_p1.source = App.user.user_avater;
-        this.name_p1.text = App.user.user_name;
-        this.chess_p1.text = App.play.Me == 1?"黑子":"白子";
+        this.icon_p2.source = App.user.user_avater;
+        this.name_p2.text = App.user.user_name;
+        this.chess_p2.text = App.play.Me == 1?"黑子":"白子";
+        this.msg_p2.visible = false;
 
-        this.icon_p2.source = App.play.rival.icon;
-        this.name_p2.text = App.play.rival.name;
-        this.chess_p2.text = App.play.Me != 1?"黑子":"白子";
+        this.icon_p1.source = App.play.rival.icon;
+        this.name_p1.text = App.play.rival.name;
+        this.chess_p1.text = App.play.Me != 1?"黑子":"白子";
+        this.msg_p1.visible = false;
     }
 
     protected OnClose() {
@@ -52,6 +59,49 @@ class PlayPanel extends UIBase {
         this._chessPg && this._chessPg.graphics.clear();
         App.event.delListener(EventName.UpdateManual, this.UpdateChess, this);
         App.event.delListener(EventName.GameOver, this.OnGameOver, this);
+        App.event.delListener(EventName.NewMessage, this.OnNewMsg, this)
+    }
+
+    private OnNewMsg(p: {id: string, msg: string}) {
+        if (p.id == App.user.user_id) {
+            this.MeSay(p.msg);
+        } else {
+            this.OtherSay(p.msg);
+        }
+    }
+
+    private timer_me: egret.Timer;
+    private MeSay(s: string) {
+        if (!this.timer_me) {
+            this.timer_me = new egret.Timer(2000, 1);
+            this.timer_me.addEventListener(egret.TimerEvent.TIMER_COMPLETE, ()=>{
+                this.msg_p2.visible = false;
+            }, this)
+        }
+
+        this.msg_p1.visible = false;
+        this.msg_p2.visible = true;
+        this.msg2.text = s;
+        this.timer_other && this.timer_other.reset();
+        this.timer_me.reset();
+        this.timer_me.start();
+    }
+
+    private timer_other: egret.Timer;
+    private OtherSay(s: string) {
+        if (!this.timer_other) {
+            this.timer_other = new egret.Timer(2000, 1);
+            this.timer_other.addEventListener(egret.TimerEvent.TIMER_COMPLETE, ()=>{
+                this.msg_p1.visible = false;
+            }, this)
+        }
+
+        this.msg_p2.visible = false;
+        this.msg_p1.visible = true;
+        this.msg1.text = s;
+        this.timer_me && this.timer_me.reset();
+        this.timer_other.reset();
+        this.timer_other.start();
     }
 
     private InitMapBg() {

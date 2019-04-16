@@ -115,6 +115,27 @@ var Utils = (function () {
         var d2 = new Date(t2);
         return d1.getFullYear() == d2.getFullYear() && d1.getMonth() == d2.getMonth() && d1.getDate() == d2.getDate();
     };
+    Object.defineProperty(Utils, "Screen", {
+        /**获取浏览器窗口尺寸 */
+        get: function () {
+            var sw = window.innerWidth || window.screen.availWidth;
+            var sh = window.innerHeight || window.screen.availHeight;
+            return { width: sw, height: sh };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**随机生成一个汉字 */
+    Utils.RandomHz = function (l) {
+        if (l === void 0) { l = 1; }
+        var rsl = "";
+        for (var i = 0; i < l; i++) {
+            var word = "";
+            eval("word=" + '"\\u' + (Math.round(Math.random() * 20901) + 19968).toString(16) + '"');
+            rsl += word;
+        }
+        return rsl;
+    };
     /**
      * 预设颜色值
      */

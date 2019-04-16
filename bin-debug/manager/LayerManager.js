@@ -18,8 +18,8 @@ var LayerManager = (function () {
         this._stage.addChild(this._loadingLayer);
     };
     LayerManager.prototype.AdapterWindow = function () {
-        var sw = window.screen.availWidth;
-        var sh = window.screen.availHeight;
+        var sw = Utils.Screen.width;
+        var sh = Utils.Screen.height;
         if (sh < sw) {
             var idx = sw;
             sw = sh;

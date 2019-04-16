@@ -16,6 +16,10 @@ var ConfigManager = (function () {
                 "像素游戏，童年的回忆",
             ],
         };
+        // =============================================
+        this._icons = [
+            "001_png", "002_png", "003_png", "004_png", "005_png", "006_png", "007_png", "008_png"
+        ];
     }
     Object.defineProperty(ConfigManager.prototype, "shareMsg", {
         /**随机一个分享文本 */
@@ -46,6 +50,15 @@ var ConfigManager = (function () {
                 msg: this._shareInfo.msg[k],
                 img: "resource/assets/views/share/" + this._shareInfo.imgs[k],
             };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ConfigManager.prototype, "RandomIcon", {
+        get: function () {
+            var l = this._icons.length;
+            var k = Math.floor(Math.random() * l);
+            return this._icons[k];
         },
         enumerable: true,
         configurable: true

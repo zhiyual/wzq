@@ -24,9 +24,9 @@ var UIBase = (function (_super) {
         this.isOpened = true;
         this.tap_mask && this.tap_mask.addEventListener(egret.TouchEvent.TOUCH_TAP, this.OnTapMask, this);
         // this.AdaptIphoneX();
-        this.AdaptFullScreen();
-        this.OpenMovies();
-        this.FlashStripeBg();
+        // this.AdaptFullScreen();
+        // this.OpenMovies();
+        // this.FlashStripeBg();
     };
     UIBase.prototype.OnClose = function () {
         this.isOpened = false;
@@ -92,8 +92,8 @@ var UIBase = (function (_super) {
     UIBase.prototype.AdaptScreen = function () {
         if (!this.content)
             return;
-        var sw = window.screen.availWidth;
-        var sh = window.screen.availHeight;
+        var sw = Utils.Screen.width;
+        var sh = Utils.Screen.height;
         if (sh < sw) {
             var idx = sw;
             sw = sh;

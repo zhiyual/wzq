@@ -94,5 +94,7 @@ var EventName;
     EventName[EventName["UpdateManual"] = 2] = "UpdateManual";
     /**GameOver */
     EventName[EventName["GameOver"] = 3] = "GameOver";
+    /**来消息了 */
+    EventName[EventName["NewMessage"] = 4] = "NewMessage";
 })(EventName || (EventName = {}));
 //# sourceMappingURL=EventManager.js.map

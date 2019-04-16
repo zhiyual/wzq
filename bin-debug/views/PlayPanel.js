@@ -13,21 +13,75 @@ var PlayPanel = (function (_super) {
     function PlayPanel() {
         var _this = _super.call(this) || this;
         _this.skinName = PlayPanelSkin;
+        _this.AdaptType = UIBase.Adapt1;
         return _this;
     }
     PlayPanel.prototype.OnOpen = function () {
         _super.prototype.OnOpen.call(this);
         // App.play.InitGame(1);
         this.InitMapBg();
+        this.hasChess.text = App.play.Me == 1 ? "你执黑子" : "你执白子";
+        this.drawTip.text = "黑棋先手";
+        this.InitPlayers();
         this.tapMask.addEventListener(egret.TouchEvent.TOUCH_TAP, this.OnMaskTap, this);
         App.event.addListener(EventName.UpdateManual, this.UpdateChess, this);
         App.event.addListener(EventName.GameOver, this.OnGameOver, this);
+        App.event.addListener(EventName.NewMessage, this.OnNewMsg, this);
+    };
+    PlayPanel.prototype.InitPlayers = function () {
+        this.icon_p2.source = App.user.user_avater;
+        this.name_p2.text = App.user.user_name;
+        this.chess_p2.text = App.play.Me == 1 ? "黑子" : "白子";
+        this.msg_p2.visible = false;
+        this.icon_p1.source = App.play.rival.icon;
+        this.name_p1.text = App.play.rival.name;
+        this.chess_p1.text = App.play.Me != 1 ? "黑子" : "白子";
+        this.msg_p1.visible = false;
     };
     PlayPanel.prototype.OnClose = function () {
         _super.prototype.OnClose.call(this);
         this._chessPg && this._chessPg.graphics.clear();
         App.event.delListener(EventName.UpdateManual, this.UpdateChess, this);
         App.event.delListener(EventName.GameOver, this.OnGameOver, this);
+        App.event.delListener(EventName.NewMessage, this.OnNewMsg, this);
+    };
+    PlayPanel.prototype.OnNewMsg = function (p) {
+        if (p.id == App.user.user_id) {
+            this.MeSay(p.msg);
+        }
+        else {
+            this.OtherSay(p.msg);
+        }
+    };
+    PlayPanel.prototype.MeSay = function (s) {
+        var _this = this;
+        if (!this.timer_me) {
+            this.timer_me = new egret.Timer(2000, 1);
+            this.timer_me.addEventListener(egret.TimerEvent.TIMER_COMPLETE, function () {
+                _this.msg_p2.visible = false;
+            }, this);
+        }
+        this.msg_p1.visible = false;
+        this.msg_p2.visible = true;
+        this.msg2.text = s;
+        this.timer_other && this.timer_other.reset();
+        this.timer_me.reset();
+        this.timer_me.start();
+    };
+    PlayPanel.prototype.OtherSay = function (s) {
+        var _this = this;
+        if (!this.timer_other) {
+            this.timer_other = new egret.Timer(2000, 1);
+            this.timer_other.addEventListener(egret.TimerEvent.TIMER_COMPLETE, function () {
+                _this.msg_p1.visible = false;
+            }, this);
+        }
+        this.msg_p2.visible = false;
+        this.msg_p1.visible = true;
+        this.msg1.text = s;
+        this.timer_me && this.timer_me.reset();
+        this.timer_other.reset();
+        this.timer_other.start();
     };
     PlayPanel.prototype.InitMapBg = function () {
         var _bg = new egret.Shape();
@@ -58,6 +112,7 @@ var PlayPanel = (function (_super) {
         App.play.Manual.forEach(function (v) {
             _this.DrawChess(v[0], v[1], v[2]);
         });
+        this.drawTip.text = App.play.isMeDraw ? "到你落子..." : "对方落子...";
     };
     PlayPanel.prototype.DrawChess = function (a, i, j) {
         var dl = 600 / App.play.row;

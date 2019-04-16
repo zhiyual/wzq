@@ -50,7 +50,13 @@ declare class MapPanelSkin extends eui.Skin{
 }
 declare class MatchPanelSkin extends eui.Skin{
 }
+declare class MessageSkin extends eui.Skin{
+}
+declare class MsgItemSkin extends eui.Skin{
+}
 declare class PlayPanelSkin extends eui.Skin{
+}
+declare class ResultPanelSkin extends eui.Skin{
 }
 declare module skins{
 	class VScrollBarSkin extends eui.Skin{

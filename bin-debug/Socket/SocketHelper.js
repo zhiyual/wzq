@@ -13,7 +13,8 @@ var SocketHelper = (function () {
         enumerable: true,
         configurable: true
     });
-    SocketHelper.prototype.Connect = function (surl) {
+    SocketHelper.prototype.Connect = function () {
+        var surl = window['env'] == "debug" ? SocketHelper.ServerIP_deb : SocketHelper.ServerIP_pub;
         this._socket = io(surl);
     };
     SocketHelper.prototype.emit = function (e, msg) {
@@ -33,23 +34,35 @@ var SocketHelper = (function () {
         SocketHelper.instance.on(SocketHelper.cmd_s_c.over, function (res) {
             var p = JSON.parse(res);
             var tip = "";
+            var isWin = false;
             if (p.winer) {
                 tip = p.winer == App.user.user_id ? "YOU WIN!" : "YOU LOSE!";
+                isWin = p.winer == App.user.user_id;
             }
             if (p.loser) {
                 tip = p.loser != App.user.user_id ? "YOU WIN!" : "YOU LOSE!";
+                isWin = p.loser != App.user.user_id;
             }
-            ConfirmPanel.Show(tip, 'alert');
-            App.event.disListener(EventName.GameOver);
+            ResultPanel.Show(isWin)
+                .then(function () {
+                App.event.disListener(EventName.GameOver);
+            });
             SocketHelper.instance.emit(SocketHelper.cmd_c_s.over, "");
         }, this);
+        SocketHelper.instance.on(SocketHelper.cmd_s_c.msg, function (res) {
+            var p = JSON.parse(res);
+            App.event.disListener(EventName.NewMessage, p);
+        }, this);
     };
+    SocketHelper.ServerIP_deb = "http://localhost:3002";
+    SocketHelper.ServerIP_pub = "http://45.76.10.80:3002";
     SocketHelper.cmd_c_s = {
         /**登录 */
         login: "login",
         match: "match",
         draw: "draw",
-        over: 'over'
+        over: 'over',
+        msg: "msg",
     };
     SocketHelper.cmd_s_c = {
         login: "login",
@@ -57,6 +70,7 @@ var SocketHelper = (function () {
         draw: "draw",
         over: "over",
         conn: "conn",
+        msg: 'msg',
     };
     return SocketHelper;
 }());

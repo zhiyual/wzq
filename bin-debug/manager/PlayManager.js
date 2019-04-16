@@ -7,6 +7,8 @@ var PlayManager = (function () {
         this._manual = [];
         this._map = [];
         this.meChess = 1;
+        // =============================
+        this._rival = null;
     }
     PlayManager.prototype.addManual = function (chess, i, j) {
         this._manual.push([chess, i, j]);
@@ -23,6 +25,7 @@ var PlayManager = (function () {
         this._manual = [];
         this.meChess = res.chess;
         this.roomid = res.roomid;
+        this._rival = res.rival;
     };
     Object.defineProperty(PlayManager.prototype, "Me", {
         /**
@@ -43,6 +46,13 @@ var PlayManager = (function () {
             else {
                 return this.Manual[l - 1][0] != this.Me;
             }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(PlayManager.prototype, "rival", {
+        get: function () {
+            return this._rival;
         },
         enumerable: true,
         configurable: true

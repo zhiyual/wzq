@@ -86,4 +86,6 @@ enum EventName {
     UpdateManual,
     /**GameOver */
     GameOver,
+    /**来消息了 */
+    NewMessage,
 }

@@ -40,6 +40,15 @@ var PanelManager = (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(PanelManager.prototype, "result", {
+        get: function () {
+            if (!this._result)
+                this._result = new ResultPanel();
+            return this._result;
+        },
+        enumerable: true,
+        configurable: true
+    });
     return PanelManager;
 }());
 __reflect(PanelManager.prototype, "PanelManager");

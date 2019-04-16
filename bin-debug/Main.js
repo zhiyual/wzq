@@ -105,16 +105,16 @@ var Main = (function (_super) {
                         if (WXHelper.isWxgame) {
                             window.platform = new Platfrom_WX();
                         }
-                        // 初始化显示层级
-                        App.gameStage = this.stage;
-                        App.layer.InitLayer(App.gameStage);
                         return [4 /*yield*/, this.loadResource()];
                     case 1:
                         _a.sent();
                         return [4 /*yield*/, RES.getResAsync("description_json")];
                     case 2:
                         result = _a.sent();
-                        SocketHelper.instance.Connect('http://172.21.50.30:3002');
+                        SocketHelper.instance.Connect();
+                        // 初始化显示层级
+                        App.gameStage = this.stage;
+                        App.layer.InitLayer(App.gameStage);
                         this.createGameScene();
                         return [2 /*return*/];
                 }

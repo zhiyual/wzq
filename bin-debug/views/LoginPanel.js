@@ -18,6 +18,11 @@ var LoginPanel = (function (_super) {
     LoginPanel.prototype.OnOpen = function () {
         var _this = this;
         _super.prototype.OnOpen.call(this);
+        this._avater = App.config.RandomIcon;
+        this.icon.source = this._avater;
+        // this.nameIn.text = `咸鱼号：${Math.floor(Math.random()*1000)}`;
+        this.nameIn.text = Utils.RandomHz(Math.floor(Math.random() * 4) + 2);
+        // this.l1.text = `${App.layer.Excs[0]}\n${App.layer.GlobalScale}`
         this.loginBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.OnLoginTap, this);
         SocketHelper.instance.on(SocketHelper.cmd_s_c.login, function (res) {
             var p = JSON.parse(res);
@@ -28,7 +33,7 @@ var LoginPanel = (function (_super) {
                 ConfirmPanel.Show('登录成功！', 'alert')
                     .then(function () {
                     App.user.InitUserInfo({
-                        avater: "",
+                        avater: _this._avater,
                         name: p.name,
                         uid: p.id
                     });
@@ -42,8 +47,18 @@ var LoginPanel = (function (_super) {
         _super.prototype.OnClose.call(this);
     };
     LoginPanel.prototype.OnLoginTap = function () {
+        var __nick = this.nameIn.text || "";
+        if (__nick.length == 0) {
+            ConfirmPanel.Show('请输入昵称！', 'alert');
+            return;
+        }
+        if (__nick.length > 9) {
+            ConfirmPanel.Show('昵称长度为 1-9 个字符！', 'alert');
+            return;
+        }
         var p = {
-            name: this.nameIn.text
+            name: __nick,
+            icon: this._avater
         };
         SocketHelper.instance.emit(SocketHelper.cmd_c_s.login, JSON.stringify(p));
     };
